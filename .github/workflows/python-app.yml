@@ -37,4 +37,4 @@ jobs:
         API_HASH: ${{ secrets.API_HASH }}
         HU_STRING_SESSION: ${{ secrets.HU_STRING_SESSION }}
       run: |
-        python ubot.py
+        python __main__.py
