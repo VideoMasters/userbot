@@ -17,5 +17,5 @@
 			"description":"Clone the repository locally first. Change directory to userbot. Generate your string session by running \"python3 GenerateStringSession.py\"",
 			"value":""
 		}
-
+	}
 }
