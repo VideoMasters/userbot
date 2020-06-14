@@ -1,9 +1,9 @@
 {
 	"name":"userbot",
 	"description":"A simple telegram userbot made using pyrogram asyncio.",
-	"repository":"https://github.com/Deshdeepak1/userbot",
-	"website":"https://github.com/Deshdeepak1/userbot",
-	"logo":"https://github.com/Deshdeepak1/userbot/raw/master/logo.png",
+	"repository":"https://github.com/DaruaraFriends/userbot",
+	"website":"https://daruarafriends.github.io/userbot/",
+	"logo":"https://github.com/DaruaraFriends/userbot/raw/master/logo.png",
 	"env": {
 		"API_ID":{
 			"description": "Get your telegram API ID from https://my.telegram.org",
