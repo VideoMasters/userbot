@@ -1,3 +1,21 @@
 {
-	"name":"userbot"
+	"name":"userbot",
+	"description":"A simple telegram userbot made using pyrogram asyncio.",
+	"repository":"https://github.com/Deshdeepak1/userbot",
+	"website":"https://github.com/Deshdeepak1/userbot",
+	"logo":"https://github.com/Deshdeepak1/userbot/raw/master/logo.png",
+	"env": {
+		"API_ID":{
+			"description": "Get your telegram API ID from https://my.telegram.org",
+			"value":""
+		},
+		"API_HASH":{
+			"description":"Get your telegram API HASH from https://my.telegram.org",
+			"value":""
+		},
+		"HU_STRING_SESSION":{
+			"description":"Clone the repository locally first. Change directory to userbot. Generate your string session by running \"python3 GenerateStringSession.py\"",
+			"value":""
+		}
+
 }
