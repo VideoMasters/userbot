@@ -15,4 +15,4 @@ async def _thank(uBot,message):
     await message.reply('You welcome {}'.format(message.from_user.first_name))
 @uBot.on_message(Filters.private & ~ Filters.me & ~ Filters.bot  & (Filters.regex(r'(?i)(How are (you|u))')))
 async def reply_fine(uBot,message):
-    await message.reply('I am fine.\nWhat about you {}?'.format(message.from_user.first_name))
+    await message.reply('I am fine.\nWhat about you, {}?'.format(message.from_user.first_name))
