@@ -5,7 +5,7 @@ async def _alive(uBot,message):
     await message.edit(ALIVE)    
 @uBot.on_message(Filters.private & ~ Filters.me & ~ Filters.bot & (Filters.regex(r'(?i)\b(hello|hi|hii|hiii|hye|hy)\b')))
 async def _hello(uBot,message):
-   await  message.reply('Hello {}'.format(message.from_user.first_name))
+   await  message.reply('Hello {}.\nHow are you?'.format(message.from_user.first_name))
 @uBot.on_message( ~ Filters.me & Filters.command('ualive','.'))
 async def _ualive(uBot,message):
     reply=await message.reply('.alive')
