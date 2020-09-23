@@ -1,5 +1,5 @@
 import os
-from pyrogram import Client as uBot , Filters
+from pyrogram import Client , Filters
 async def upload(uBot,usr,path,replacer):
     if os.path.isdir(path) :
         p=path.replace(replacer,'')
@@ -19,7 +19,7 @@ async def upload(uBot,usr,path,replacer):
         await uBot.send_document(usr,path)
         print(path)
 
-@uBot.on_message(Filters.me & Filters.command('upload','.'))
+@Client.on_message((Filters.me | Filters.outgoing) & Filters.command('upload','.'))
 async def _upload(uBot,message):
     path = message.text.split('.upload ')[1]
     replacer=os.path.dirname(path)+'/'
