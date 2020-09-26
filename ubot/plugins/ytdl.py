@@ -2,20 +2,26 @@ from pyrogram import Client , Filters
 from youtube_dl import YoutubeDL
 ytdl=YoutubeDL()
 @Client.on_message((Filters.me | Filters.outgoing ) & Filters.command('ytdl','.'))
-async def ytdl_f(uBot,message):
+async def ydl(uBot,message):
     if '|' in message.text:
         texts=message.text.split('|')
         link=texts[0].split()[1]
         f=texts[1]
         info=ytdl.extract_info(link,download=False)
-        title=info['title']
-        ext=[format['ext'] for format in  info['formats'] if int(format['format_id'])==int(f)][0]
-        
-        print(title+'.'+ext)
-        #ytdl.download(link)
+        ytdl.params['format']=f
+        if info.get('_title')=='playlist':
+            ytdl.params['outtmpl']='%(playlist)s/%(playlist_index)s.%(title)s.%(ext)s'    
+        elif info.get('_title')=='channel':
+            print('channel')
+            pass
+        else:
+            ytdl.params['outtmpl']='%(title)s.%(ext)s'
+        ytdl.download([link])
+
     else:
         link=message.text.split()[1]
-        formats=ytdl.extract_info(link,download=False)['formats']
+        info=ytdl.extract_info(link,download=False)
+        formats=info['formats']
         options=''
         for format in formats:
             size=format['filesize']
@@ -26,5 +32,6 @@ async def ytdl_f(uBot,message):
             option=format['format_id']+' '+format['ext']+' '+format['format_note']+' '+size+'\n'
             options+=option
         await message.reply(options)
+        
         
 
