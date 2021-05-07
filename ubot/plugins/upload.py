@@ -1,28 +1,31 @@
 import os
-from pyrogram import Client , Filters
-async def upload(uBot,usr,path,replacer):
-    if os.path.isdir(path) :
-        p=path.replace(replacer,'')
-        await uBot.send_message(usr,p,parse_mode=None)
+
+from pyrogram import Client, filters
+
+
+async def upload(uBot, usr, path, replacer):
+    if os.path.isdir(path):
+        p = path.replace(replacer, "")
+        await uBot.send_message(usr, p, parse_mode=None)
         print(path)
-        Files=os.listdir(path)
+        Files = os.listdir(path)
         Files.sort()
-        for file in Files :
-            path=path+"/"+file
-            await upload(uBot,usr,path,replacer)
-            path= path.replace("/"+file,'')
-            if file is Files[-1] :
-                p=path.replace(replacer,'')
+        for file in Files:
+            path = path + "/" + file
+            await upload(uBot, usr, path, replacer)
+            path = path.replace("/" + file, "")
+            if file is Files[-1]:
+                p = path.replace(replacer, "")
                 print(p)
-                await uBot.send_message(usr,p,parse_mode=None)
+                await uBot.send_message(usr, p, parse_mode=None)
     else:
-        await uBot.send_document(usr,path)
+        await uBot.send_document(usr, path)
         print(path)
 
-@Client.on_message((Filters.me | Filters.outgoing) & Filters.command('upload','.'))
-async def _upload(uBot,message):
-    path = message.text.split('.upload ')[1]
-    replacer=os.path.dirname(path)+'/'
-    usr=message.chat.id
-    await upload(uBot,usr,path,replacer)
 
+@Client.on_message((filters.me | filters.outgoing) & filters.command("upload", "."))
+async def _upload(uBot, message):
+    path = message.text.split(".upload ")[1]
+    replacer = os.path.dirname(path) + "/"
+    usr = message.chat.id
+    await upload(uBot, usr, path, replacer)

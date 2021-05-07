@@ -1,9 +1,12 @@
 import asyncio
-from pyrogram import Client  , Filters
-@Client.on_message((Filters.outgoing | Filters.me) & Filters.command('exec','.'))
-async def _(uBot,message):
-    
-    cmd = message.text.split('.exec ')[1]
+
+from pyrogram import Client, filters
+
+
+@Client.on_message((filters.outgoing | filters.me) & filters.command("exec", "."))
+async def _(uBot, message):
+
+    cmd = message.text.split(".exec ")[1]
     process = await asyncio.create_subprocess_shell(
         cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
@@ -15,4 +18,4 @@ async def _(uBot,message):
     if not o:
         o = "No Output.`"
     OUTPUT = f"**QUERY:**\n__Command:__\n`{cmd}` \n__PID:__\n`{process.pid}`\n\n**stderr:** \n`{e}`\n**Output:**\n{o}"
-    await uBot.send_message(message.chat.id,OUTPUT)
+    await uBot.send_message(message.chat.id, OUTPUT)
